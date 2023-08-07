@@ -1,4 +1,4 @@
-package com.example.springbootkeycloak.controller;
+package org.example.springbootkeycloak.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;

@@ -1,4 +1,4 @@
-package com.example.springbootkeycloak.security;
+package org.example.springbootkeycloak.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
