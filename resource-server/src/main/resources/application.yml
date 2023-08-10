@@ -1,0 +1,12 @@
+server:
+  port: 8181
+
+spring:
+  application:
+    name: resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
+          jwk-set-uri: http://localhost:8080/realms/SpringBootKeycloak/protocol/openid-connect/certs
