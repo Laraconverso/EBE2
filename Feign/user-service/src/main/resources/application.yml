@@ -1,0 +1,30 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: user-service
+  security:
+    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: http://localhost:8080/realms/miercoles
+      client:
+        registration:
+          keycloak:
+            client-id: user-service-client
+            client-secret:
+            authorization-grant-type: client_credentials
+#            provider: keycloak
+        provider:
+          keycloak:
+#            issuer-uri: http://localhost:8080/realms/miercoles
+            tokenUri: http://localhost:8080/realms/miercoles/protocol/openid-connect/token
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-service:8761/eureka/
+    enabled: false
+
+
+

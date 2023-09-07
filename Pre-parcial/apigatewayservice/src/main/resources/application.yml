@@ -1,0 +1,39 @@
+server:
+  port: 9090
+#aca api-gateway-service es el nombre del proveedor con el que estamos registrando
+#lo vamos a cambiar por el que estamos usando: keycloak
+#spring.security.oauth2.client.provider.api-gateway-service.issuer-uri=http://localhost:8080/realms/dh
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak-test:
+            issuer-uri: http://localhost:8080/realms/DH
+
+#aca esta bien que diga api-gateway-service ya que el cliente es nuestra aplicacion que es el gateway
+#si cambiamos el proveedor, porque lo modificamos arriba
+#spring.security.oauth2.client.registration.api-gateway-service.provider=api-gateway-service
+
+        registration:
+          keycloak-test:
+#            provider: keycloak-provider
+            client-id: api-gateway-client
+            client-secret: oaa123SwUH4HhQR2r5WNQZ7n9Af6CaCJ
+            scope:
+              - openid
+              - publish
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:9090/login/oauth2/code/keycloak
+
+
+#toma el token que llega y lo agrega en el ruteo hacia el otro MS, entonces le llega al MS y da o no acceso
+  cloud:
+    gateway:
+      default-filters: TokenRelay
+      routes:
+        - id: hello-service
+          uri: http://localhost:8086
+          predicates: Path=/hello/**
+
