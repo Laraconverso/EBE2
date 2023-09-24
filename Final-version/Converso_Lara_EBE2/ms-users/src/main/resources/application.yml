@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: ms-users
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            authorization-grant-type: client_credentials
+            client-id: DigitalCommerce
+            client-secret: b54b3PhFeELPHmssLLhH71EQqlQv5i4u
+        provider:
+          keycloak:
+            token-uri: http://localhost:8080/realms/DigitalCommerce/protocol/openid-connect/token
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/DigitalCommerce
+    application:
+      name: ms-users
+
+
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8081
+
+
+ms-users:
+  keycloak:
+    serverUrl: http://localhost:8080
+    realm: DigitalCommerce
+    clientId: dh-client
+    clientSecret: b54b3PhFeELPHmssLLhH71EQqlQv5i4u
+    authorization-grant-type: client_credentials
